@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}- Registre{% endblock %}
+
+{% block content %}
+
+<!-- PAGE TITLE -->
+<header class="bg-gradient-to-r from-blue-500 to-purple-500 py-20 text-white text-center">
+    <div class="container mx-auto">
+        <h1 class="text-4xl md:text-6xl lg:text-8xl font-bold mb-8 mt-8">Become an instructor</h1>
+        <nav class="text-sm">
+            <a href="http://127.0.0.1:8000/" class="text-gray-300">Home</a>
+            <span class="mx-2 text-gray-300">/</span>
+            <span class="text-gray-100">Become-instructor</span>
+        </nav>
+    </div>
+</header>
+<style>
+    .form-group input[type="email"],
+    .form-group input[type="text"],
+    .form-group input[type="password"],
+    .form-group textarea {
+        width: 96%;
+        background-color: #f0f0f0;
+        /* Adjust as needed */
+        border: 1px solid #ccc;
+        /* Adjust as needed */
+        color: #333;
+        /* Adjust as needed */
+        font-size: 14px;
+        /* Adjust as needed */
+        border-radius: 5px;
+        /* Adjust as needed */
+        padding: 10px;
+        /* Adjust as needed */
+        margin-bottom: 10px;
+        /* Adjust as needed */
+        /* Add any additional styles you need */
+    }
+</style>
+<!-- REGISTER -->
+
+
+<div class="container mx-auto mt-14 mb-10 flex justify-center">
+    {% for msg in messages %}
+    {% if 'success' == msg.tags %}
+    <div class="alert alert-success alert-dismissible fade show d-flex justify-content-center" role="alert">
+        {{msg}}
+    </div>
+    {% else %}
+    <div class="alert alert-danger alert-dismissible fade show d-flex justify-content-center " role="alert">
+        {{msg}}
+    </div>
+    {% endif %}
+    {% endfor %}
+    <form class="max-w-sm mx-auto" method="post" action="{% url 'F_register' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class=" form-group mb-5">
+            <h2 class="text-2xl font-bold mb-6">Register In Here</h2>
+            <label for="username" class="block mb-2 text-sm font-medium text-gray-900">Username:</label>
+
+            {{form.name}}
+        </div>
+        <div class="form-group mb-5">
+            <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Email:</label>
+            {{form.email_author}}
+        </div>
+        <div class=" form-group mb-5">
+            <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Phone ::</label>
+            {{form.phone_author}}
+        </div>
+        <div class="form-group mb-5">
+            <label for="confirm_password" class="block mb-2 text-sm font-medium text-gray-900">CNI :</label>
+            {{form.cni}}
+        </div>
+
+        <div class="form-group mb-5">
+            <label for="author_profile" class="block mb-2 text-sm font-medium text-gray-900">Author Profile:</label>
+            {{form.author_profile}}
+        </div>
+        <div class="form-group mb-5">
+            <label for="ville" class="block mb-2 text-sm font-medium text-gray-900">City:</label>
+            {{form.ville}}
+        </div>
+        <div class="form-group mb-5">
+            <label for="about_author" class="block mb-2 text-sm font-medium text-gray-900">About Author:</label>
+            {{form.about_author}}
+        </div>
+
+        <button type="submit"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+    </form>
+</div>
+<div class="flex justify-center items-center mb-10">
+    <div class="inline-block text-right">
+        <p>Already have an account? <a href="http://127.0.0.1:8000/accounts/login/">Log in</a></p>
+    </div>
+</div>
+{% endblock %}
